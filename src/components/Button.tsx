@@ -3,35 +3,18 @@ import { useState, useEffect, useRef } from "react";
 interface ButtonProps {
 	color?: "primary" | "secondary" | "danger" | "success" | "warning";
 	onClick: (buttonText: string) => void;
+	buttonText: string;
 }
 
-const Button = ({ color = "primary", onClick }: ButtonProps) => {
-	const buttonTextOptions = ["Show Item List", "Hide Item List"];
-	const [isListShown, setIsListShown] = useState(false);
-	const prevIsListShownRef = useRef(isListShown);
-
-	useEffect(() => {
-		if (prevIsListShownRef.current !== isListShown) {
-			const newButtonText = isListShown
-				? buttonTextOptions[0]
-				: buttonTextOptions[1];
-			onClick(newButtonText);
-			prevIsListShownRef.current = isListShown;
-		}
-	}, [isListShown, onClick]);
-
-	const handleButtonClick = () => {
-		setIsListShown(!isListShown);
-	};
-
+const Button = ({ buttonText, color = "primary", onClick }: ButtonProps) => {
 	return (
 		<button
 			className={`btn btn-${color}`}
 			onClick={() => {
-				handleButtonClick();
+				onClick(buttonText);
 			}}
 		>
-			{isListShown ? buttonTextOptions[1] : buttonTextOptions[0]}
+			{buttonText}
 		</button>
 	);
 };
