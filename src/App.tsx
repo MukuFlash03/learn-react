@@ -29,17 +29,15 @@ function App() {
 				buttonText={
 					isListShown ? buttonTextOptions[1] : buttonTextOptions[0]
 				}
-			></Button>
-			<div>
-				{/* <Message /> */}
-				{isListShown && (
-					<ListGroup
-						itemData={cityData}
-						heading="Cities"
-						onSelectItem={handleSelectItem}
-					/>
-				)}
-			</div>
+			/>
+			{/* <Message /> */}
+			{isListShown && (
+				<ListGroup
+					itemData={cityData}
+					heading="Cities"
+					onSelectItem={handleSelectItem}
+				/>
+			)}
 		</>
 	);
 }
